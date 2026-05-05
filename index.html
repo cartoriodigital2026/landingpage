@@ -372,56 +372,97 @@
     }
 
     @media (max-width: 768px) {
-      section { padding: 56px 0; }
-      .container { padding: 0 20px; }
-      .nav-inner { padding: 14px 20px; }
+      section { padding: 48px 0; }
+      .container { padding: 0 18px; }
+      .nav-inner { padding: 12px 18px; }
       .nav-links { display: none; }
 
       /* Urgência bar */
-      #urgencia-bar .container { flex-direction: column; gap: 6px; padding: 0 16px; }
+      #urgencia-bar .container { flex-direction: column; gap: 4px; padding: 0 16px; text-align:center; }
+      #urgencia-bar { padding: 8px 0; }
 
       /* Hero */
-      .hero-h1 { font-size: clamp(28px, 8vw, 42px) !important; }
-      .hero-sub { font-size: 15px !important; max-width: 100% !important; }
-      .hero-ctas { flex-direction: column; align-items: stretch; gap: 10px; padding: 0 8px; }
-      .hero-ctas a { text-align: center; width: 100%; }
-      .hero-ctas .btn-primary, .hero-ctas .btn-outline { padding: 14px 20px !important; }
+      .hero-h1 { font-size: clamp(26px, 7.5vw, 40px) !important; line-height: 1.15 !important; }
+      .hero-sub { font-size: 15px !important; max-width: 100% !important; padding: 0 4px; }
+      .hero-ctas { flex-direction: column; align-items: stretch; gap: 10px; padding: 0 4px; }
+      .hero-ctas a { text-align: center; width: 100%; box-sizing: border-box; }
+      .hero-ctas .btn-primary, .hero-ctas .btn-outline { padding: 14px 20px !important; font-size: 15px !important; width: 100%; }
 
       /* Screen tabs — scroll horizontal */
       .screen-tabs { display: flex; overflow-x: auto; gap: 6px; padding-bottom: 8px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
       .screen-tabs::-webkit-scrollbar { display: none; }
-      .screen-tab { white-space: nowrap; flex-shrink: 0; }
+      .screen-tab { white-space: nowrap; flex-shrink: 0; padding: 6px 12px; font-size: 12px; }
 
       /* Stats */
       .stats-bar-inner { grid-template-columns: 1fr 1fr; }
-      .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 20px 16px; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 18px 14px; }
       .stat-item:nth-child(odd) { border-right: 1px solid var(--border); }
-      .stat-value { font-size: 28px !important; }
+      .stat-value { font-size: 26px !important; }
+      .stat-label { font-size: 11px !important; }
 
-      /* Grids */
+      /* Section headers */
+      .section-header { margin-bottom: 36px; }
+      .section-header h2 { font-size: clamp(22px, 6vw, 32px) !important; margin-bottom: 10px; }
+      .section-header p { font-size: 14px; }
+
+      /* Como funciona — steps */
       .steps { grid-template-columns: 1fr; }
+      .step { padding: 24px 20px; }
+
+      /* Features simples */
       .features-grid { grid-template-columns: 1fr; }
-      .security-inner, .sobre-inner { grid-template-columns: 1fr; gap: 40px; }
-      .form-row { grid-template-columns: 1fr; }
-      .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+      .feature-item { padding: 24px 20px; }
 
-      /* Tour interativo */
-      #tour { grid-template-columns: 1fr !important; min-height: auto !important; }
-      #tour > *:first-child { border-right: none !important; border-bottom: 1px solid var(--border); }
-
-      /* Grids inline */
+      /* Funcionalidades detalhadas — cards inline com repeat(3) */
       [style*="grid-template-columns:repeat(3"],
-      [style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns: repeat(3"] {
+        grid-template-columns: 1fr !important;
+      }
+      /* Restaura bordas nos cards empilhados (border-left:none some a borda no mobile) */
+      #funcionalidades-detalhadas [style*="border-left:none"],
+      #funcionalidades-detalhadas [style*="border-left: none"] {
+        border-left: 1px solid var(--border) !important;
+        border-top: none !important;
+      }
+      /* Padding reduzido nos cards de funcionalidades */
+      #funcionalidades-detalhadas [style*="padding:32px 28px"],
+      #funcionalidades-detalhadas [style*="padding: 32px 28px"] {
+        padding: 22px 18px !important;
+      }
+      /* Grids 1fr 1fr → 1 coluna */
       [style*="grid-template-columns: 1fr 1fr"],
       [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
 
-      /* Typography */
-      h2 { font-size: clamp(22px, 6vw, 36px) !important; }
-      p { font-size: 15px; }
+      /* Security / Sobre */
+      .security-inner, .sobre-inner { grid-template-columns: 1fr; gap: 32px; }
+
+      /* Tour interativo */
+      #tour { grid-template-columns: 1fr !important; min-height: auto !important; }
+      #tour > *:first-child { border-right: none !important; border-bottom: 1px solid var(--border); max-height: 260px; overflow-y: auto; }
+
+      /* CNJ / interinidade grids */
+      [style*="grid-template-columns:repeat(3,1fr)"],
+      [style*="grid-template-columns: repeat(3, 1fr)"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns:1fr 1fr"],
+      [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+
+      /* Tabela de planos — scroll horizontal */
+      [style*="grid-template-columns:1fr 1.8fr 1fr 1fr 1fr"] { min-width: 580px; }
+
+      /* Form */
+      .form-row { grid-template-columns: 1fr; gap: 10px; }
+      .contato-header h2 { font-size: 26px !important; }
+
+      /* Footer */
+      .footer-inner { flex-direction: column; gap: 14px; text-align: center; }
 
       /* FAQ */
-      .faq-q span { font-size: 14px; }
-      .contato-header h2 { font-size: 28px !important; }
+      .faq-q { padding: 16px 0; }
+      .faq-q span { font-size: 14px; line-height: 1.4; }
+
+      /* Typography geral */
+      h2 { font-size: clamp(22px, 6vw, 34px) !important; }
+      h3 { font-size: clamp(16px, 4vw, 22px) !important; }
     }
 
     @media (max-width: 400px) {
