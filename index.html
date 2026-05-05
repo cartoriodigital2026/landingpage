@@ -58,8 +58,7 @@
       background: rgba(8,9,14,0.92);
       backdrop-filter: blur(12px);
       border-color: var(--border);
-    }    
-    .nav-inner {
+    }    .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
       padding: 14px 32px; max-width: 1140px; margin: 0 auto;
     }
@@ -359,66 +358,239 @@
     .text-gold { color: var(--gold); }
     .text-muted { color: var(--text-muted); }
 
-    /* ── MOBILE & TABLET OPTIMIZATIONS ── */
-    @media (max-width: 992px) {
-      .mob-grid-gap { grid-template-columns: 1fr !important; gap: 40px !important; }
-      .mob-tour { display: flex !important; flex-direction: column; }
-      .mob-tour > div:first-child { border-right: none !important; border-bottom: 1px solid var(--border); }
-      .mob-tour > div:last-child { min-height: 400px !important; }
+    /* ── RESPONSIVE ── */
+    /* ═══════════════════════════════════════════════════════
+       RESPONSIVO — MOBILE FIRST
+       ═══════════════════════════════════════════════════════ */
+
+    /* ── Tablet (≤ 900px) ── */
+    @media (max-width: 900px) {
+      section { padding: 72px 0; }
+      .container { padding: 0 24px; }
+
+      .security-inner, .sobre-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
     }
 
+    /* ── Mobile (≤ 768px) ── */
     @media (max-width: 768px) {
-      /* Typography & Spacing resets for tighter mobile view */
-      section { padding: 64px 0 !important; }
-      #hero { padding: 140px 0 64px !important; }
-      .hero-h1 { font-size: clamp(32px, 8vw, 42px) !important; margin-bottom: 16px !important; }
-      .hero-sub { font-size: 16px !important; margin-bottom: 32px !important; }
-      .section-header { margin-bottom: 40px !important; }
-      .section-header h2 { font-size: clamp(26px, 7vw, 32px) !important; margin-bottom: 12px !important; }
-      .hero-ctas { flex-direction: column; gap: 12px; width: 100%; max-width: 400px; margin: 0 auto 48px !important; }
-      .hero-ctas a { width: 100%; text-align: center; }
+      /* Reset base */
+      section { padding: 56px 0; }
+      .container { padding: 0 20px; }
 
-      /* Nav override: keep CTA visible on mobile */
-      .nav-links { display: flex !important; gap: 0 !important; }
-      .nav-links a:not(.btn-primary) { display: none !important; }
-      .nav-links .btn-primary { padding: 8px 16px; font-size: 13px; }
-      
-      /* Grid adjustments for elements with inline styles */
-      .mob-grid { 
-        grid-template-columns: 1fr !important; 
-        gap: 16px !important; 
-        border: none !important;
-        background: transparent !important;
+      /* Nav */
+      .nav-inner { padding: 14px 20px; }
+      .nav-links { display: none; }
+
+      /* Hamburger menu */
+      .nav-hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+        background: none;
+        border: none;
       }
-      .mob-grid > div { 
-        border: 1px solid var(--border) !important; 
-        border-radius: var(--radius) !important; 
-        padding: 24px 20px !important; 
+      .nav-hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text-muted);
+        border-radius: 2px;
+        transition: all 0.3s;
       }
-      /* Clean overrides */
-      .mob-grid-sm { grid-template-columns: 1fr !important; gap: 12px !important; }
-      .stats-bar-inner { grid-template-columns: 1fr 1fr !important; }
-      .stat-item { border-right: none !important; border-bottom: 1px solid var(--border); padding: 20px 16px !important; }
-      .steps { grid-template-columns: 1fr !important; gap: 16px !important; }
-      .features-grid { grid-template-columns: 1fr !important; }
-      .security-inner, .sobre-inner { grid-template-columns: 1fr !important; gap: 40px !important; }
-      .form-row { grid-template-columns: 1fr !important; }
-      .footer-inner { flex-direction: column; gap: 20px !important; text-align: center; }
-      
-      /* Fluxo Visual (Arrows) */
-      .mob-flow { flex-direction: column !important; gap: 8px !important; }
-      .mob-flow > div.mob-arrow { transform: rotate(90deg); padding: 8px 0 !important; }
-      .mob-flow > div { width: 100% !important; max-width: 100% !important; }
-      
-      /* Tables */
-      .mob-scroll { overflow-x: auto; padding-bottom: 16px; margin: 0 -20px !important; padding: 0 20px 16px !important; width: calc(100% + 40px); }
-      .mob-scroll > div { min-width: 600px; }
-      
-      /* Visual Adjustments */
-      .badge { margin-bottom: 16px !important; }
-      .sobre-visual .sobre-card { padding: 16px 20px !important; }
+      .nav-mobile-open {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(8,9,14,0.97);
+        z-index: 200;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+      }
+      .nav-mobile-open a {
+        font-family: 'Syne', sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text);
+        text-decoration: none;
+      }
+      .nav-mobile-close {
+        position: absolute;
+        top: 20px; right: 20px;
+        background: none; border: none;
+        color: var(--text-muted);
+        font-size: 28px; cursor: pointer;
+      }
+
+      /* Urgência bar */
+      #urgencia-bar .container {
+        flex-direction: column;
+        gap: 6px;
+        padding: 0 16px;
+      }
+      #urgencia-bar { padding: 10px 0; }
+
+      /* Hero */
+      .hero-h1 { font-size: clamp(28px, 8vw, 42px) !important; }
+      .hero-sub { font-size: 15px !important; max-width: 100% !important; padding: 0; }
+      .hero-ctas {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 0 8px;
+      }
+      .hero-ctas a { text-align: center; width: 100%; }
+      .hero-ctas .btn-primary,
+      .hero-ctas .btn-outline { padding: 14px 20px !important; font-size: 15px !important; }
+
+      /* Screen tabs */
+      .screen-tabs {
+        display: flex;
+        overflow-x: auto;
+        gap: 6px;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .screen-tabs::-webkit-scrollbar { display: none; }
+      .screen-tab { white-space: nowrap; flex-shrink: 0; }
+      .hero-screen { border-radius: 8px; }
+
+      /* Stats bar */
+      .stats-bar-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+      .stat-item {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 20px 16px;
+      }
+      .stat-item:nth-child(odd) { border-right: 1px solid var(--border); }
+      .stat-value { font-size: 28px !important; }
+
+      /* Section headers */
+      .section-header { margin-bottom: 40px; }
+      .section-header p { font-size: 15px; }
+
+      /* Steps */
+      .steps { grid-template-columns: 1fr; gap: 2px; }
+      .step { padding: 28px 24px; }
+
+      /* Features grid */
+      .features-grid { grid-template-columns: 1fr; gap: 1px; }
+      .feature-card { padding: 28px 24px; }
+
+      /* Security / Sobre */
+      .security-inner, .sobre-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      /* FAQ */
+      .faq-q { padding: 18px 0; }
+      .faq-q span { font-size: 14px; }
+
+      /* Contato / Form */
+      .form-row { grid-template-columns: 1fr; gap: 12px; }
+      .contato-header h2 { font-size: 28px !important; }
+
+      /* Footer */
+      .footer-inner {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      /* Typography adjustments */
+      h2 { font-size: clamp(22px, 6vw, 36px) !important; }
+      h3 { font-size: clamp(18px, 4vw, 24px) !important; }
+      p { font-size: 15px; }
+
+      /* Pricing / plan cards */
+      .pricing-grid,
+      .plans-grid,
+      [class*="pricing"],
+      [class*="planos"] {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* CNJ / checklist grids */
+      .cnj-grid,
+      .checklist-grid,
+      [class*="cnj-inner"],
+      [class*="interinidade"] {
+        grid-template-columns: 1fr !important;
+        gap: 32px;
+      }
+
+      /* General grid overrides */
+      [style*="grid-template-columns: repeat(3"] {
+        grid-template-columns: 1fr !important;
+      }
+      [style*="grid-template-columns: repeat(4"] {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+
+    /* ── Small phones (≤ 400px) ── */
+    @media (max-width: 400px) {
+      .container { padding: 0 16px; }
+      .hero-h1 { font-size: 26px !important; }
+      .stats-bar-inner { grid-template-columns: 1fr; }
+      .stat-item:nth-child(odd) { border-right: none; }
+      .stat-item { border-bottom: 1px solid var(--border); }
+      .screen-tab { padding: 6px 10px; font-size: 11px; }
     }
   </style>
+
+  <style>
+    /* Hamburger — oculto no desktop */
+    .nav-hamburger { display: none; }
+    @media (max-width: 768px) {
+      .nav-hamburger { display: flex; }
+
+      /* Tour interativo — empilha vertical no mobile */
+      #tour {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+      }
+      #tour > *:first-child {
+        border-right: none !important;
+        border-bottom: 1px solid var(--border);
+      }
+
+      /* Grids inline repeat(3) → 1 coluna */
+      [style*="grid-template-columns:repeat(3"],
+      [style*="grid-template-columns: repeat(3"] {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Grid 1fr 1fr inline → 1 coluna */
+      [style*="grid-template-columns: 1fr 1fr"],
+      [style*="grid-template-columns:1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* Tabela de comparação de planos — scroll horizontal */
+      [style*="grid-template-columns:1fr 1.8fr 1fr 1fr 1fr"] {
+        min-width: 600px;
+      }
+      /* Wrapper da tabela com scroll */
+      section:has([style*="grid-template-columns:1fr 1.8fr"]) .container > div:last-child {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
 </head>
 <body>
 
@@ -435,6 +607,9 @@
       <a href="#faq">FAQ</a>
       <a href="#contato" class="btn-primary">Solicitar Demo</a>
     </div>
+    <button class="nav-hamburger" onclick="abrirMenuMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -545,7 +720,7 @@
   </div>
 
   <!-- PRODUCT TOUR ANIMATION -->
-  <div id="tour" class="mob-tour" style="display:grid; grid-template-columns: 340px 1fr; min-height: 520px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-card); overflow: hidden;">
+  <div id="tour" style="display:grid; grid-template-columns: 340px 1fr; min-height: 520px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-card); overflow: hidden;">
 
     <!-- Left: steps list -->
     <div style="border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 0;">
@@ -830,7 +1005,7 @@
       <p>Não é uma adaptação de sistema genérico. Cada tela e cada regra foi projetada para a realidade da serventia extrajudicial brasileira.</p>
     </div>
 
-    <div class="mob-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;">
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;">
 
       <!-- Gestão de Acervo -->
       <div style="background:var(--bg-card); border:1px solid var(--border); padding:32px 28px;">
@@ -886,7 +1061,7 @@
     </div>
 
     <!-- Segunda linha -->
-    <div class="mob-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:2px;">
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:2px;">
 
       <!-- PDF/A -->
       <div style="background:var(--bg-card2); border:1px solid var(--border); padding:32px 28px;">
@@ -952,7 +1127,7 @@
       <h2>Do livro físico ao PDF/A assinado digitalmente.</h2>
       <p>O fluxo completo exigido pelo Decreto 10.278/2020 — automatizado, sem margem para erro.</p>
     </div>
-    <div class="mob-flow" style="display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap; max-width:900px; margin:0 auto;">
+    <div style="display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:wrap; max-width:900px; margin:0 auto;">
 
       <!-- Passo 1 -->
       <div style="flex:1; min-width:140px; text-align:center; padding:24px 16px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius);">
@@ -960,7 +1135,7 @@
         <div style="font-size:12px;font-weight:700;margin-bottom:6px;">Digitalização</div>
         <div style="font-size:11px;color:var(--text-muted);line-height:1.5;">Upload das imagens e vinculação aos termos do livro</div>
       </div>
-      <div class="mob-arrow" style="color:var(--border-light); font-size:20px; padding:0 6px; flex-shrink:0;">→</div>
+      <div style="color:var(--border-light); font-size:20px; padding:0 6px; flex-shrink:0;">→</div>
 
       <!-- Passo 2 -->
       <div style="flex:1; min-width:140px; text-align:center; padding:24px 16px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius);">
@@ -968,7 +1143,7 @@
         <div style="font-size:12px;font-weight:700;margin-bottom:6px;">Encerramento</div>
         <div style="font-size:11px;color:var(--text-muted);line-height:1.5;">Titular ou escrevente autorizado encerra o livro no sistema</div>
       </div>
-      <div class="mob-arrow" style="color:var(--border-light); font-size:20px; padding:0 6px; flex-shrink:0;">→</div>
+      <div style="color:var(--border-light); font-size:20px; padding:0 6px; flex-shrink:0;">→</div>
 
       <!-- Passo 3 -->
       <div style="flex:1; min-width:140px; text-align:center; padding:24px 16px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius);">
@@ -976,7 +1151,7 @@
         <div style="font-size:12px;font-weight:700;margin-bottom:6px;">Geração PDF/A</div>
         <div style="font-size:11px;color:var(--text-muted);line-height:1.5;">Abertura → Termos + Averbações → Encerramento, com metadados completos</div>
       </div>
-      <div class="mob-arrow" style="color:var(--border-light); font-size:20px; padding:0 6px; flex-shrink:0;">→</div>
+      <div style="color:var(--border-light); font-size:20px; padding:0 6px; flex-shrink:0;">→</div>
 
       <!-- Passo 4 -->
       <div style="flex:1; min-width:140px; text-align:center; padding:24px 16px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius);">
@@ -984,7 +1159,7 @@
         <div style="font-size:12px;font-weight:700;margin-bottom:6px;">Assinatura A3</div>
         <div style="font-size:11px;color:var(--text-muted);line-height:1.5;">Titular assina com token ICP-Brasil em até 60 dias (prazo legal)</div>
       </div>
-      <div class="mob-arrow" style="color:var(--border-light); font-size:20px; padding:0 6px; flex-shrink:0;">→</div>
+      <div style="color:var(--border-light); font-size:20px; padding:0 6px; flex-shrink:0;">→</div>
 
       <!-- Passo 5 -->
       <div style="flex:1; min-width:140px; text-align:center; padding:24px 16px; background:rgba(34,197,94,0.05); border:1px solid rgba(34,197,94,0.25); border-radius:var(--radius);">
@@ -1005,7 +1180,7 @@
       <h2>Funciona onde o seu cartório está.</h2>
       <p>Projetado para a realidade brasileira: internet instável, estrutura enxuta, equipe pequena. O sistema funciona — independente das condições.</p>
     </div>
-    <div class="mob-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px;">
       <div style="background: var(--bg-card); border: 1px solid var(--border); padding: 40px 36px;">
         <div style="font-size: 40px; margin-bottom: 16px;">⬛</div>
         <div class="mono" style="font-size: 11px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 12px;">MODO OFFLINE</div>
@@ -1037,7 +1212,7 @@
       <p>Três camadas independentes que protegem o acervo da serventia — em repouso, em trânsito e no acesso.</p>
     </div>
 
-    <div class="mob-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-bottom:48px;">
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-bottom:48px;">
 
       <!-- Criptografia -->
       <div style="background:rgba(147,197,253,0.04); border:1px solid rgba(147,197,253,0.15); padding:36px 32px; border-radius:var(--radius) 0 0 var(--radius);">
@@ -1086,7 +1261,7 @@
     <!-- Perfis de acesso -->
     <div style="background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:28px 32px;">
       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--text-muted);letter-spacing:0.1em;margin-bottom:16px;">PERFIS DE ACESSO</div>
-      <div class="mob-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
         <div style="padding:16px 20px; background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius);">
           <div style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:6px;">Titular / Admin</div>
           <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Acesso total. Encerramento de livros, configurações, geração de PDF/A, gestão de usuários e MFA.</div>
@@ -1113,7 +1288,7 @@
       <p>O Provimento CNJ 213/2026 define parâmetros de recuperação conforme o faturamento semestral da serventia. Atendemos todas as classes.</p>
     </div>
 
-    <div class="mob-scroll" style="max-width:760px;margin:0 auto;">
+    <div style="max-width:760px;margin:0 auto;">
       <div style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
         <!-- Header -->
         <div style="display:grid;grid-template-columns:1fr 1.8fr 1fr 1fr 1fr;background:var(--bg-card2);padding:14px 20px;border-bottom:1px solid var(--border);">
@@ -1156,7 +1331,7 @@
 <!-- REQUISITOS TÉCNICOS -->
 <section style="background:var(--bg-card); border-top:1px solid var(--border); padding:80px 0;">
   <div class="container">
-    <div class="mob-grid-gap" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
       <div>
         <div class="badge">REQUISITOS TÉCNICOS</div>
         <h2 style="font-size:36px;font-weight:800;letter-spacing:-0.02em;margin-bottom:16px;">Roda no computador<br/>que você já tem.</h2>
@@ -1206,7 +1381,7 @@
 <!-- CNJ 213 -->
 <section id="cnj" style="background: var(--bg-card); border-top: 1px solid var(--border);">
   <div class="container">
-    <div class="mob-grid-gap" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
       <div>
         <div class="badge">PROVIMENTO CNJ Nº 213/2026</div>
         <h2 style="font-size: 36px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px;">O novo marco regulatório dos cartórios. <em style="color: var(--accent); font-style: normal;">Atendemos tudo.</em></h2>
@@ -1302,7 +1477,7 @@
 <!-- INTERINIDADE -->
 <section id="interinidade" style="background: linear-gradient(135deg, #1a1200 0%, #0e0e00 50%, #0a1020 100%); border-top: 1px solid #3a2c0a; border-bottom: 1px solid #3a2c0a; padding: 80px 0;">
   <div class="container">
-    <div class="mob-grid-gap" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
       <div>
         <div style="display:inline-flex; align-items:center; gap:6px; border:1px solid #6b4f00; background:rgba(232,184,75,0.08); color:var(--gold); font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.08em; padding:5px 14px; border-radius:100px; margin-bottom:24px;">● CARTÓRIOS EM INTERINIDADE</div>
         <h2 style="font-size: clamp(26px,3.5vw,42px); font-weight:800; letter-spacing:-0.02em; margin-bottom:20px; color: var(--text);">Seu cartório está com interino(a)?<br/><span style="color:var(--gold);">Você precisa — e pode — digitalizar.</span></h2>
@@ -1495,7 +1670,7 @@
       </div>
 
       <!-- Proposta beta -->
-      <div class="mob-grid" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; margin-bottom:32px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:2px; margin-bottom:32px;">
         <div style="background:var(--bg); border:1px solid var(--border); padding:20px 16px; text-align:center;">
           <div style="font-size:30px; font-weight:800; font-family:'Syne',sans-serif; color:var(--accent); margin-bottom:6px;">3</div>
           <div style="font-size:13px; font-weight:600; margin-bottom:4px;">meses gratuitos</div>
@@ -1597,7 +1772,7 @@
       </div>
 
       <!-- WhatsApp + Email -->
-      <div class="mob-grid-sm" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
         <a href="https://api.whatsapp.com/send?phone=553173451301&text=Ol%C3%A1%20Bruno%2C%20tenho%20interesse%20no%20programa%20beta%20do%20Cart%C3%B3rio%20Digital!" target="_blank"
           style="display:flex; align-items:center; justify-content:center; gap:10px; background:#25D366; color:#fff; padding:14px; border-radius:var(--radius); text-decoration:none; font-weight:600; font-size:14px;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1783,6 +1958,32 @@ ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />
     btn.textContent = '✓ Solicitação enviada!';
     btn.style.background = 'var(--green)';
     btn.disabled = true;
+  }
+
+  // ── MENU MOBILE ──────────────────────────────────────────
+  function abrirMenuMobile() {
+    const overlay = document.createElement('div');
+    overlay.className = 'nav-mobile-open';
+    overlay.id = 'mobileMenu';
+    overlay.innerHTML = `
+      <button class="nav-mobile-close" onclick="fecharMenuMobile()">✕</button>
+      <a href="#como-funciona"   onclick="fecharMenuMobile()">Como funciona</a>
+      <a href="#funcionalidades-detalhadas" onclick="fecharMenuMobile()">Funcionalidades</a>
+      <a href="#arquitetura"     onclick="fecharMenuMobile()">Segurança</a>
+      <a href="#interinidade"    onclick="fecharMenuMobile()" style="color:var(--gold)">Interinidade</a>
+      <a href="#cnj"             onclick="fecharMenuMobile()">Prov. 213/CNJ</a>
+      <a href="#faq"             onclick="fecharMenuMobile()">FAQ</a>
+      <a href="#contato"         onclick="fecharMenuMobile()"
+         style="background:var(--accent);color:#fff;padding:12px 32px;border-radius:8px;margin-top:8px">
+         Solicitar Demo
+      </a>`;
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+  }
+  function fecharMenuMobile() {
+    const m = document.getElementById('mobileMenu');
+    if (m) m.remove();
+    document.body.style.overflow = '';
   }
 </script>
 </body>
